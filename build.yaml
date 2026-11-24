@@ -15,7 +15,6 @@ include:
     artifact-name: ergonaut_one_s_right_studio
   - board: xiao_ble//zmk
     shield: settings_reset
-    ---
 include:
   - board: xiao_ble//zmk
     shield: molekula raw_hid_adapter
