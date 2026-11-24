@@ -7,6 +7,7 @@
 #include <zmk/ble.h>
 #include <zmk/battery.h>
 #include <raw_hid/raw_hid.h>
+#include <raw_hid/events.h>
 
 static uint8_t periph_bat = 255;
 
@@ -31,8 +32,20 @@ static int status_listener(const zmk_event_t *eh) {
     return ZMK_EV_EVENT_BUBBLE;
 }
 
+static int raw_hid_rx_listener(const zmk_event_t *eh) {
+    const struct raw_hid_received_event *ev = as_raw_hid_received_event(eh);
+    if (ev && ev->data[0] == 0x01) {
+        send_status_report();
+    }
+    return ZMK_EV_EVENT_BUBBLE;
+}
+
 ZMK_LISTENER(hid_status, status_listener);
 ZMK_SUBSCRIPTION(hid_status, zmk_layer_state_changed);
 ZMK_SUBSCRIPTION(hid_status, zmk_ble_active_profile_changed);
 ZMK_SUBSCRIPTION(hid_status, zmk_battery_state_changed);
 ZMK_SUBSCRIPTION(hid_status, zmk_peripheral_battery_state_changed);
+
+ZMK_LISTENER(hid_status_rx, raw_hid_rx_listener);
+ZMK_SUBSCRIPTION(hid_status_rx, raw_hid_received_event);
+
