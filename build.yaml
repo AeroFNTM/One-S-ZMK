@@ -1,10 +1,10 @@
 include:
   - board: xiao_ble//zmk
-    shield: ergonaut_one_s_left
+    shield: ergonaut_one_s_left raw_hid_adapter
   - board: xiao_ble//zmk
     shield: ergonaut_one_s_right
   - board: xiao_ble//zmk
-    shield: ergonaut_one_s_left
+    shield: ergonaut_one_s_left raw_hid_adapter
     snippet: studio-rpc-usb-uart
     cmake-args: -DCONFIG_ZMK_STUDIO=y
     artifact-name: ergonaut_one_s_left_studio
@@ -15,7 +15,4 @@ include:
     artifact-name: ergonaut_one_s_right_studio
   - board: xiao_ble//zmk
     shield: settings_reset
-include:
-  - board: xiao_ble//zmk
-    shield: molekula raw_hid_adapter
 
