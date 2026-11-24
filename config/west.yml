@@ -4,6 +4,8 @@ manifest:
       url-base: https://github.com/zmkfirmware
     - name: ergonautkb
       url-base: https://github.com/ergonautkb
+    - name: zzeneg
+      url-base: https://github.com
   projects:
     - name: zmk
       remote: zmkfirmware
@@ -11,6 +13,9 @@ manifest:
       import: app/west.yml
     - name: ergonautkb-zmk-module
       remote: ergonautkb
+      revision: main
+    - name: zmk-raw-hid
+      remote: zzeneg
       revision: main
   self:
     path: config
